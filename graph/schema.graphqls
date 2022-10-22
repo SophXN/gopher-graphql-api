@@ -1,0 +1,47 @@
+#We have two types Link and User each of them for representing Link and User to
+#client, a links Query to return list of Links. an input for creating new links
+#and mutation for creating link. we also need mutations to for auth system which
+#includes Login, createUser, refreshToken(I’ll explain them later) then run the
+#command below to regenerate graphql models.
+
+type Link {
+  id: ID!
+  title: String!
+  address: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  links: [Link!]!
+}
+
+input NewLink {
+  title: String!
+  address: String!
+}
+
+input RefreshTokenInput {
+  token: String!
+}
+
+input NewUser {
+  username: String!
+  password: String!
+}
+
+input Login {
+  username: String!
+  password: String!
+}
+
+type Mutation {
+  createLink(input: NewLink!): Link!
+  createUSer(input: NewUser!): String!
+  login(input: Login!): String!
+  refreshToken(input: RefreshTokenInput!): String!
+}
